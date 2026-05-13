@@ -232,6 +232,6 @@ app/
 
 ---
 
-# License
+# Demo
+https://allo-health-assignment-mu.vercel.app/
 
-This project is created for educational and demonstration purposes.
