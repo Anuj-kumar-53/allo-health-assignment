@@ -1,36 +1,158 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Inventory Reservation System
 
-## Getting Started
+A simple inventory reservation system built with Next.js and Supabase that allows users to reserve products from different warehouse zones. The application supports stock reservations, reservation expiry handling, and inventory management across multiple warehouses.
 
-First, run the development server:
+Features
+View products across multiple warehouse zones
+Real-time inventory availability
+Reserve products with quantity selection
+Reservation confirmation and release flow
+Automatic reservation expiry after 10 minutes
+Multi-warehouse inventory management
+Simple responsive UI using Tailwind CSS
+Supabase PostgreSQL backend
+Tech Stack
+Next.js (App Router)
+React
+Tailwind CSS
+Supabase
+PostgreSQL
+Project Structure
+app/
+ ├── api/
+ │    ├── products/
+ │    ├── reservations/
+ │    └── cron/
+ ├── products/
+ ├── reservations/
+ └── lib/
 
-```bash
+Database Design
+
+The project uses four main tables:
+
+Table	Purpose
+products	Stores product information
+warehouses	Stores warehouse/zone details
+inventory	Tracks stock per warehouse
+reservations	Stores active and completed reservations
+Reservation Flow
+User selects a product
+User selects a warehouse zone
+User chooses quantity
+Stock is reserved temporarily
+Reservation is stored with an expiry timestamp
+User can confirm the reservation
+If not confirmed within 10 minutes, the reservation expires automatically
+Expiry Mechanism
+
+Each reservation is created with an expires_at timestamp.
+
+Example:
+
+Reservation created at 10:00 AM
+Expiry time set to 10:10 AM
+
+If the user does not confirm the reservation within 10 minutes:
+
+reserved stock is released
+reservation status becomes RELEASED
+
+A cron API periodically checks for expired reservations and updates inventory accordingly.
+
+How Reservation Works Internally
+
+When a reservation is created:
+
+reserved_stock increases
+available stock decreases temporarily
+reservation status is set to PENDING
+
+When reservation is confirmed:
+
+total_stock decreases permanently
+reservation status becomes CONFIRMED
+
+When reservation expires or is released:
+
+reserved stock is returned
+reservation status becomes RELEASED
+Running Locally
+1. Clone the repository
+git clone <your-repo-url>
+cd inventory-reservation-system
+2. Install dependencies
+npm install
+Environment Variables
+
+Create a .env.local file in the root directory.
+
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+CRON_SECRET=your_secret
+Database Setup
+
+Open the Supabase SQL Editor and run the schema SQL file.
+
+This will:
+
+create tables
+create indexes
+create reservation functions
+insert seed data
+Seed Data
+
+The project includes:
+
+laptops
+smartphones
+TVs
+multiple warehouse zones across India
+
+Example warehouse zones:
+
+Delhi
+Bangalore
+Mumbai
+Kolkata
+Hyderabad
+Start Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+http://localhost:3000
+API Routes
+Route	Purpose
+/api/products	Fetch products and inventory
+/api/reservations	Create reservation
+/api/cron/expire	Expire pending reservations
+Trade-offs / Simplifications
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project intentionally keeps the backend architecture simple for readability and easier understanding.
 
-## Learn More
+Some trade-offs made:
 
-To learn more about Next.js, take a look at the following resources:
+Minimal backend abstraction
+Limited concurrency handling
+Simple reservation expiry logic
+Basic error handling
+No advanced caching or queue systems
+Simple polling/realtime updates
+No authentication layer
+Improvements With More Time
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+If expanded further, possible improvements include:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Authentication and user accounts
+Admin dashboard
+Better concurrency protection
+Reservation analytics
+Payment integration
+Advanced inventory reporting
+Optimistic UI updates
+Improved warehouse allocation logic
+Better mobile responsiveness
+Screenshots / Demo
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Add screenshots or deployment link here.
