@@ -52,35 +52,158 @@ CREATE INDEX idx_reservations_pending_expiry
 
 
 INSERT INTO products (name, price) VALUES
-  ('Sony WH-1000XM5 Headphones',      349.99),
-  ('Apple AirPods Pro 2',             249.99),
-  ('Samsung Galaxy S24 Ultra',       1299.99),
-  ('iPad Air M2',                     599.99),
-  ('Keychron Q1 Mechanical Keyboard', 169.99);
+('MacBook Air M3', 124999.00),
+('Dell XPS 15', 159999.00),
+('iPhone 15 Pro', 134999.00),
+('Samsung Galaxy S24 Ultra', 129999.00),
+('Sony Bravia 55 Inch TV', 89999.00),
+('LG OLED Evo TV', 149999.00);
+
+
 
 INSERT INTO warehouses (name, location) VALUES
-  ('East Coast Hub', 'Newark, NJ'),
-  ('West Coast Hub', 'Los Angeles, CA'),
-  ('Central Hub',    'Chicago, IL');
+('North Zone Warehouse', 'Delhi'),
+('South Zone Warehouse', 'Bangalore'),
+('West Zone Warehouse', 'Mumbai'),
+('East Zone Warehouse', 'Kolkata'),
+('Central Zone Warehouse', 'Hyderabad');
+
+
 
 INSERT INTO inventory (product_id, warehouse_id, total_stock)
 SELECT p.id, w.id,
   CASE
-    WHEN p.name = 'Sony WH-1000XM5 Headphones'      AND w.name = 'East Coast Hub' THEN 15
-    WHEN p.name = 'Sony WH-1000XM5 Headphones'      AND w.name = 'West Coast Hub' THEN 8
-    WHEN p.name = 'Sony WH-1000XM5 Headphones'      AND w.name = 'Central Hub'    THEN 1
-    WHEN p.name = 'Apple AirPods Pro 2'             AND w.name = 'East Coast Hub' THEN 30
-    WHEN p.name = 'Apple AirPods Pro 2'             AND w.name = 'West Coast Hub' THEN 20
-    WHEN p.name = 'Apple AirPods Pro 2'             AND w.name = 'Central Hub'    THEN 5
-    WHEN p.name = 'Samsung Galaxy S24 Ultra'        AND w.name = 'East Coast Hub' THEN 10
-    WHEN p.name = 'Samsung Galaxy S24 Ultra'        AND w.name = 'West Coast Hub' THEN 6
-    WHEN p.name = 'Samsung Galaxy S24 Ultra'        AND w.name = 'Central Hub'    THEN 2
-    WHEN p.name = 'iPad Air M2'                     AND w.name = 'East Coast Hub' THEN 12
-    WHEN p.name = 'iPad Air M2'                     AND w.name = 'West Coast Hub' THEN 9
-    WHEN p.name = 'iPad Air M2'                     AND w.name = 'Central Hub'    THEN 3
-    WHEN p.name = 'Keychron Q1 Mechanical Keyboard' AND w.name = 'East Coast Hub' THEN 25
-    WHEN p.name = 'Keychron Q1 Mechanical Keyboard' AND w.name = 'West Coast Hub' THEN 18
-    WHEN p.name = 'Keychron Q1 Mechanical Keyboard' AND w.name = 'Central Hub'    THEN 1
+
+    WHEN p.name = 'MacBook Air M3'
+      AND w.name = 'North Zone Warehouse'
+      THEN 12
+
+    WHEN p.name = 'MacBook Air M3'
+      AND w.name = 'South Zone Warehouse'
+      THEN 8
+
+    WHEN p.name = 'MacBook Air M3'
+      AND w.name = 'West Zone Warehouse'
+      THEN 5
+
+    WHEN p.name = 'MacBook Air M3'
+      AND w.name = 'East Zone Warehouse'
+      THEN 3
+
+    WHEN p.name = 'MacBook Air M3'
+      AND w.name = 'Central Zone Warehouse'
+      THEN 6
+
+
+
+    WHEN p.name = 'Dell XPS 15'
+      AND w.name = 'North Zone Warehouse'
+      THEN 10
+
+    WHEN p.name = 'Dell XPS 15'
+      AND w.name = 'South Zone Warehouse'
+      THEN 7
+
+    WHEN p.name = 'Dell XPS 15'
+      AND w.name = 'West Zone Warehouse'
+      THEN 4
+
+    WHEN p.name = 'Dell XPS 15'
+      AND w.name = 'East Zone Warehouse'
+      THEN 2
+
+    WHEN p.name = 'Dell XPS 15'
+      AND w.name = 'Central Zone Warehouse'
+      THEN 5
+
+
+
+    WHEN p.name = 'iPhone 15 Pro'
+      AND w.name = 'North Zone Warehouse'
+      THEN 20
+
+    WHEN p.name = 'iPhone 15 Pro'
+      AND w.name = 'South Zone Warehouse'
+      THEN 15
+
+    WHEN p.name = 'iPhone 15 Pro'
+      AND w.name = 'West Zone Warehouse'
+      THEN 11
+
+    WHEN p.name = 'iPhone 15 Pro'
+      AND w.name = 'East Zone Warehouse'
+      THEN 7
+
+    WHEN p.name = 'iPhone 15 Pro'
+      AND w.name = 'Central Zone Warehouse'
+      THEN 9
+
+
+
+    WHEN p.name = 'Samsung Galaxy S24 Ultra'
+      AND w.name = 'North Zone Warehouse'
+      THEN 14
+
+    WHEN p.name = 'Samsung Galaxy S24 Ultra'
+      AND w.name = 'South Zone Warehouse'
+      THEN 9
+
+    WHEN p.name = 'Samsung Galaxy S24 Ultra'
+      AND w.name = 'West Zone Warehouse'
+      THEN 6
+
+    WHEN p.name = 'Samsung Galaxy S24 Ultra'
+      AND w.name = 'East Zone Warehouse'
+      THEN 4
+
+    WHEN p.name = 'Samsung Galaxy S24 Ultra'
+      AND w.name = 'Central Zone Warehouse'
+      THEN 5
+
+
+
+    WHEN p.name = 'Sony Bravia 55 Inch TV'
+      AND w.name = 'North Zone Warehouse'
+      THEN 8
+
+    WHEN p.name = 'Sony Bravia 55 Inch TV'
+      AND w.name = 'South Zone Warehouse'
+      THEN 5
+
+    WHEN p.name = 'Sony Bravia 55 Inch TV'
+      AND w.name = 'West Zone Warehouse'
+      THEN 4
+
+    WHEN p.name = 'Sony Bravia 55 Inch TV'
+      AND w.name = 'East Zone Warehouse'
+      THEN 2
+
+    WHEN p.name = 'Sony Bravia 55 Inch TV'
+      AND w.name = 'Central Zone Warehouse'
+      THEN 3
+
+
+
+    WHEN p.name = 'LG OLED Evo TV'
+      AND w.name = 'North Zone Warehouse'
+      THEN 6
+
+    WHEN p.name = 'LG OLED Evo TV'
+      AND w.name = 'South Zone Warehouse'
+      THEN 4
+
+    WHEN p.name = 'LG OLED Evo TV'
+      AND w.name = 'West Zone Warehouse'
+      THEN 3
+
+    WHEN p.name = 'LG OLED Evo TV'
+      AND w.name = 'East Zone Warehouse'
+      THEN 1
+
+    WHEN p.name = 'LG OLED Evo TV'
+      AND w.name = 'Central Zone Warehouse'
+      THEN 2
+
     ELSE 0
   END
 FROM products p, warehouses w;
