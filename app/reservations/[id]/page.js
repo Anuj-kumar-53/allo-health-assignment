@@ -296,7 +296,7 @@ export default function ReservationPage() {
             ],
             [
               'Unit Price',
-              `$${Number(
+              `Rs. ${Number(
                 reservation.product?.price
               ).toFixed(2)}`,
             ],
@@ -322,7 +322,7 @@ export default function ReservationPage() {
             </span>
 
             <span className="text-lg font-semibold">
-              ${totalCost.toFixed(2)}
+              Rs. {totalCost.toFixed(2)}
             </span>
           </div>
         </div>

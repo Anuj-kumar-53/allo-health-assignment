@@ -128,7 +128,7 @@ function ProductCard({ product }) {
           </h2>
 
           <p className="text-blue-600 font-medium mt-1">
-            ${Number(product.price).toFixed(2)}
+            Rs. {Number(product.price).toFixed(2)}
           </p>
         </div>
 

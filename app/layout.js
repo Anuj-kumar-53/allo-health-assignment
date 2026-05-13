@@ -25,6 +25,13 @@ export default function RootLayout({ children }) {
               >
               Products
             </a>
+
+             <a
+              href="/allwarehouse"
+              className="text-sm text-gray-600 hover:underline"
+              >
+              Warehouse
+            </a>
            
               </div>
           </div>
